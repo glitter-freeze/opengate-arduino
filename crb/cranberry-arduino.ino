@@ -9,9 +9,9 @@
     This is ARDUINO sketch.
     
 */
-#include <SPI.h>
+#include <SPI.h>                // for RC522
 #include <MFRC522.h>            // RC522 library
-#include <Wire.h>               // For i2c
+#include <Wire.h>               // for LCD connection via i2c
 #include <LiquidCrystal_I2C.h>  // LCD 16x2 i2c connection library
 
 #define SS_PIN 10
@@ -48,11 +48,11 @@ const char ogVersion[ ]=" v2.0a  ";
 boolean printLcdStat=true;                      // for print "Wait for card..."
 
 
-unsigned long ogcard[] = {834145942, 2313595510};
+unsigned long ogcard[] = {834145942, 2313595510};   // here your card UID
 boolean ogcardstat=false;
-int c = sizeof(ogcard)/sizeof(*ogcard);         // num of ogcard[] elements
+int c = sizeof(ogcard)/sizeof(*ogcard);             // num of ogcard[] elements
 
-LiquidCrystal_I2C lcd(0x3F,16,2);              
+LiquidCrystal_I2C lcd(0x3F,16,2);                   // your LCD params (now sketch works only with 16x2 LCD)
 
 void tonesuccess(){
   tone(buz, 1000, 200);
