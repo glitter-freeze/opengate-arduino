@@ -8,23 +8,19 @@
     
     This is ARDUINO sketch.
     
-    We use free libraries:
-    
-    - LiquidCrystal_I2C
-    - MFRC522
 */
 #include <SPI.h>
-#include <MFRC522.h> 
-#include <Wire.h> 
-#include <LiquidCrystal_I2C.h>
+#include <MFRC522.h>            // RC522 library
+#include <Wire.h>               // For i2c
+#include <LiquidCrystal_I2C.h>  // LCD 16x2 i2c connection library
 
 #define SS_PIN 10
 #define RST_PIN 9
-#define buz 7
-#define led 3
+#define buz 7                   // buzzer
+#define led 3                   
 #define led2 4
 
-byte success[] = {
+byte success[] = {              // ok symbol
   B00000,
   B00000,
   B00001,
@@ -34,7 +30,7 @@ byte success[] = {
   B00000,
   B00000
 };
-byte wrong[] = {
+byte wrong[] = {                // wrong symbol
   B00000,
   B10001,
   B01010,
@@ -49,14 +45,14 @@ MFRC522 mfrc522(SS_PIN, RST_PIN);
 
 unsigned long uidDec, uidDecTemp; 
 const char ogVersion[ ]=" v2.0a  ";
-boolean printLcdStat=true;
+boolean printLcdStat=true;                      // for print "Wait for card..."
 
 
 unsigned long ogcard[] = {834145942, 2313595510};
 boolean ogcardstat=false;
-int c = sizeof(ogcard)/sizeof(*ogcard);
+int c = sizeof(ogcard)/sizeof(*ogcard);         // num of ogcard[] elements
 
-LiquidCrystal_I2C lcd(0x3F,16,2); 
+LiquidCrystal_I2C lcd(0x3F,16,2);              
 
 void tonesuccess(){
   tone(buz, 1000, 200);
