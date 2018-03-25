@@ -1,4 +1,4 @@
-# opengate-cranberry-arduino
+# opengate-arduino
 
 version 2.0 alpha 
 
